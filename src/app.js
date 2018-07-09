@@ -54,6 +54,7 @@ import cors from 'cors';
 
 import authRouter from './auth/router.js';
 import publicRoute from './routes/publicApi.js';
+import uploadRouter from './routes/upload.js';
 
 import errorHandler from './middleware/error.js';
 import notFound from './middleware/404.js';
@@ -67,6 +68,7 @@ app.use(express.urlencoded({extended:true})); // req.body => from a form's key v
 
 app.use(authRouter);
 app.use(publicRoute);
+app.use(uploadRouter);
 
 app.use(notFound);
 app.use(errorHandler);
