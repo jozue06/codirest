@@ -6,11 +6,11 @@ import auth from '../auth/middleware.js';
 
 import s3 from '../lib/s3.js';
 
-const upload = multer({dest: `${__dirname}/../tmp`});
+const upload = multer({dest: `../tmp`});
 
 const uploadRouter = express.Router();
 
-uploadRouter.post('/upload', auth, upload.any(), (req, res, next) => {
+uploadRouter.post('/upload', upload.any(), (req, res, next) => {
 
   if(!req.body.title || req.files.length > 1 || req.files[0].fieldname !== 'img')
     return next('title or sample was not provided');

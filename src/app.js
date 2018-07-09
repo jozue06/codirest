@@ -1,50 +1,50 @@
-'use strict';
+// 'use strict';
 
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import router from './api/api.js';
-import errorHandler from './middleware/error.js';
-import notFound from './middleware/404.js';
+// import express from 'express';
+// import morgan from 'morgan';
+// import cors from 'cors';
+// import router from './routes/api.js';
+// import errorHandler from './middleware/error.js';
+// import notFound from './middleware/404.js';
 
-let app = express();
+// let app = express();
 
-app.use(cors());
-app.use(morgan('dev'));
+// app.use(cors());
+// app.use(morgan('dev'));
 
-app.use(express.json());
-app.use(router);
+// app.use(express.json());
+// app.use(router);
 
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 
-let server = false;
+// let server = false;
 
-module.exports = {
-  start: (port) => {
-    if(! server) {
-      server = app.listen(port, (err) => {
-        if(err) { throw err; }
-        console.log(`Server up on ${port}`);
-      });
-    }
-    else {
-      console.log('Server is already running');
-    }
-  },
-  stop: () => {
-    server.close( () => {
-      console.log('Server has been stopped');
-    });
-  },
-  server: app,
-};
+// module.exports = {
+//   start: (port) => {
+//     if(! server) {
+//       server = app.listen(port, (err) => {
+//         if(err) { throw err; }
+//         console.log(`Server up on ${port}`);
+//       });
+//     }
+//     else {
+//       console.log('Server is already running');
+//     }
+//   },
+//   stop: () => {
+//     server.close( () => {
+//       console.log('Server has been stopped');
+//     });
+//   },
+//   server: app,
+// };
 
 
 
-/*  
 
-FROM LAB 18::::
+
+// FROM LAB 18::::
 
 'use strict';
 
@@ -53,7 +53,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import authRouter from './auth/router.js';
-import publicRoute from './api/publicApi.js';
+import publicRoute from './routes/publicApi.js';
 
 import errorHandler from './middleware/error.js';
 import notFound from './middleware/404.js';
@@ -92,4 +92,3 @@ module.exports = {
     });
   },
 };
-*/

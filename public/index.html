@@ -7,6 +7,7 @@
         <main>
 
             <div id="btn-login"></div>
+            <div id="oauth"></div>
 
             <hr>
 
@@ -64,7 +65,7 @@
                 headers: {
                   "Authorization": "Bearer " + token
                 },
-                url: "http://localhost:3000/showMeTheMoney",
+                url: "http://localhost:3300/showMeTheMoney",
                 async: false,
                 success: function(data){
                   $('#cash').text(data);
@@ -78,7 +79,7 @@
               e.preventDefault();
               $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/signup",
+                url: "http://localhost:3300/signup",
                 async: false,
                 data: postData,
                 success: function(data){
@@ -95,7 +96,7 @@
               let authstring = btoa(`${username}:${password}`);
               $.ajax({
                 type: "GET",
-                url: "http://localhost:3000/login",
+                url: "http://localhost:3300/login",
                 async: false,
                 headers: {
                   "Authorization": "Basic " + authstring
@@ -112,28 +113,28 @@
 window.addEventListener('load', function() {
 
   var webAuth = new auth0.WebAuth({
-    domain: 'josh-james.auth0.com',
-    clientID: 'CmDkc2TGbnFrZjn3hsxa9bsg7Jq1d4re',
+    domain: 'codirest.auth0.com',
+    clientID: 'JL52lqKSNDaIguMYgslLvEp7aVqxZish',
     responseType: 'token id_token',
-    audience: 'https://josh-james.auth0.com/userinfo',
+    audience: 'https://codirest.auth0.com/userinfo',
     scope: 'openid',
-    redirectUri: window.location.href
+    redirectUri: 'http://localhost:3300/upload'
   });
  
+  $('#btn-login').append(`<a href="https://josh-james.auth0.com/userinfo">Login With auth0</a>`);
   var loginBtn = document.getElementById('btn-login');
  
   loginBtn.addEventListener('click', function(e) {
     e.preventDefault();
     webAuth.authorize();
   });
-  $('#btn-login').append(`Login With auth0`);
  });
 </script>
         <script>
           let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
           let options = {
-            client_id:'560654039720-5kmgrmq63ctu07hb8e973t589jio17qf.apps.googleusercontent.com',
-            redirect_uri: 'http://localhost:3000/oauth',
+            client_id:'910868958603-r4eaia5a1btoo76rh4b518b5carj8k9i.apps.googleusercontent.com',
+            redirect_uri: 'http://localhost:3300/upload',
             scope: 'email openid profile',
             prompt: 'consent',
             response_type: 'code'
